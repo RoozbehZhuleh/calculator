@@ -39,3 +39,50 @@ a {
   padding: 5rem 1rem;
 }
 
+button{
+    padding:1rem;
+    cursor: pointer;
+    border: none;
+    outline: none;
+}
+
+.calculator__buttons{
+    display: grid;
+    grid-template-columns: repeat(4, 50px);
+    grid-template-rows: repeat(5, 1fr);
+}
+
+
+.phone-props{
+    display:flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.top-right{
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    gap: 5px;
+}
+
+.top-bar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 23rem;
+}
+.bottom-bar {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    width: 23rem;
+}
+
+.calculator__wrapper{
+    display:flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
