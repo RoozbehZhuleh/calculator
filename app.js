@@ -12,11 +12,13 @@ function getResult() {
     console.log(inputNumber.value);
 }
 
-function logNumber() {
-    for (let i = 0; i < 9; i++) {
-        numbers[i].addEventListener("click", console.log("hi"));
-    }
-}
+
+numbers.forEach((i) => {
+    i.addEventListener("click", () => {
+        inputNumber.value = inputNumber.value + i.textContent;
+        inputNumber.value 
+    });
+})
+
 
 equals.addEventListener("click", getResult);
-logNumber();
