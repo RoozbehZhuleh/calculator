@@ -1,6 +1,7 @@
 "use strict";
 
 // selectors
+const body = document.querySelector("body");
 const clear = document.querySelector(".clear");
 const inputNumber = document.querySelector(".input-number");
 const generalKeys = document.querySelectorAll(".gen");
@@ -10,11 +11,12 @@ const resultEquals = document.querySelector(".equals");
 const pn = document.querySelector(".pn");
 let resultsLine = document.querySelector(".results-line");
 const percent = document.querySelector(".percent");
-const history = document.querySelector(".history");
-const reverse = document.querySelector(".reverse");
-let percentage1 = inputNumber.value;
-let percent2 = "";
-// let lastResult = "";
+// let historyItem = document.querySelectorAll(".history__page__item");
+// const historyPage = document.querySelector(".history__page");
+// const historyBtn = document.querySelector(".history");
+const themeSwitcher = document.querySelector(".light-mode");
+const undo = document.querySelector(".reverse");
+var arrResult = [];
 
 
 // function getResult() {
@@ -23,11 +25,24 @@ let percent2 = "";
 
 // equals.addEventListener("click", getResult);
 
+function switchMode() {
+    if (body.className === "dark-mode") {
+        body.classList.add("light-mode");
+        body.classList.remove("dark-mode");
+    }
+    else {
+        body.classList.add("dark-mode");
+        body.classList.remove("light-mode");
+
+    }
+}
+
 function clearResults() {
     inputNumber.value = "";
     resultsLine.textContent = "0";
-
 }
+
+themeSwitcher.addEventListener("click", switchMode);
 
 
 clear.addEventListener("click", clearResults);
@@ -51,30 +66,42 @@ pn.addEventListener("click", () => {
 
 
 percent.addEventListener("click", () => {
-// let percentage1 = inputNumber.value;
-let percentage2 = inputNumber.value;
-    console.log(percentage1, percentage2);
+    inputNumber.value = inputNumber.value / 100;
 }
 )
 
 
 resultEquals.addEventListener("click", () => {
-        resultsLine.textContent = eval(inputNumber.value);
-    inputNumber.value = "";
+    var finalResult = eval(inputNumber.value);
+    resultsLine.textContent = finalResult;
+    arrResult.push(finalResult);
+    inputNumber.value = "";    
 
-    for (let i = 0; i < 5; i++){
-        var lastResults = lastResults[i];
-        console.log(lastResults);
+
+    // historyBtn.addEventListener("click", () => {
+    //    arrResult.forEach(i => {
+    //         // historyItem[i].innerHTML = "heu";
+    //        console.log(arrResult[arrResult.length]);
+    //     });
+        
+    // })
+
+
+    undo.addEventListener("click", () => {
+        arrResult.forEach(i=> {
+            inputNumber.value = arrResult[arrResult.length -1]
+            
+        });
+        
+        
+    }) 
+
+
+
     }
-        
-        
-})
+)
 
 
-// history
 
-history.addEventListener("click", () => {
-    lastResult = lastResult + resultsLine.textContent;
-})
 
 

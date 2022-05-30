@@ -10,7 +10,7 @@
   -webkit-box-sizing: border-box;
 }
 
-:root{  
+.dark-mode{  
   --body-color: #262931;
   --display-color: #0f1114;
   --operators-color: #B75F5F;
@@ -18,14 +18,15 @@
   --numbers-color: #FFFF;
 
 }
-/* .light-mode{  
+
+.light-mode{  
   --body-color: #FFFF;
   --display-color: #FAFAFA;
   --operators-color: #B75F5F;
   --general-color: #1F515D;
   --numbers-color: #191C22;
 
-} */
+}
 
 
 html {
@@ -62,6 +63,10 @@ button{
 button:active{
   background-color: var(--display-color);
 
+}
+
+ul{
+  list-style: none;
 }
 
 .equals{
@@ -196,4 +201,11 @@ border-radius: 2rem;
   width: 100%;
 }
 
+
+
+/* history page */
+
+.light-mode{
+  cursor: pointer;
+}
 
