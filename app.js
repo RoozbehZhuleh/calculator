@@ -11,19 +11,16 @@ const resultEquals = document.querySelector(".equals");
 const pn = document.querySelector(".pn");
 let resultsLine = document.querySelector(".results-line");
 const percent = document.querySelector(".percent");
-// let historyItem = document.querySelectorAll(".history__page__item");
-// const historyPage = document.querySelector(".history__page");
-// const historyBtn = document.querySelector(".history");
 const themeSwitcher = document.querySelector(".light-mode");
 const undo = document.querySelector(".reverse");
-var arrResult = [];
+const deleteKey = document.querySelector(".delete");
+const clock = document.querySelector(".clock");
+const batteryIcon = document.querySelector(".battery-icon");
+let arrResult = [];
+let arrInput = [];
+let undoCounter = arrResult.length;
 
 
-// function getResult() {
-//     console.log(inputNumber.value);
-// }
-
-// equals.addEventListener("click", getResult);
 
 function switchMode() {
     if (body.className === "dark-mode") {
@@ -71,37 +68,76 @@ percent.addEventListener("click", () => {
 )
 
 
+
+// delete button
+deleteKey.addEventListener("click", () => {
+     inputNumber.value = inputNumber.value.slice(0, -1);
+}) 
+
+
+
 resultEquals.addEventListener("click", () => {
-    var finalResult = eval(inputNumber.value);
+    let finalResult = eval(inputNumber.value);
     resultsLine.textContent = finalResult;
     arrResult.push(finalResult);
-    inputNumber.value = "";    
+    console.log(arrResult);
+    inputNumber.value = "";
+
+    
+    
+    undo.addEventListener("click", () => {    
+        inputNumber.value = arrResult[arrResult.length - 1]
+    })
+
+    
+});
 
 
-    // historyBtn.addEventListener("click", () => {
-    //    arrResult.forEach(i => {
-    //         // historyItem[i].innerHTML = "heu";
-    //        console.log(arrResult[arrResult.length]);
-    //     });
-        
-    // })
+let interval = setInterval(function () {
 
+    const date = new Date();
+    const hour = date.getHours();
+    const minute = date.getMinutes();
+    
+    
+    if (minute < 10) {
+        clock.textContent = `${hour}:0${minute}`;
 
-    undo.addEventListener("click", () => {
-        arrResult.forEach(i=> {
-            inputNumber.value = arrResult[arrResult.length -1]
-            
-        });
-        
-        
-    }) 
-
-
-
+    } else {
+        clock.textContent = `${hour}:${minute}`;
     }
-)
+})
+    
 
 
+// navigator.getBattery().then(function (battery) {
+//     let batteryLevel = battery.level * 100 + "%";
+//     console.log(batteryLevel);
+// });
+
+
+
+let batteryIsCharging = false;
+navigator.getBattery().then(function (battery) {
+    batteryIsCharging = battery.charging;
+
+    if (battery.charging === true) {
+        console.log("is charging");
+        console.log(battery.level * 100 + "%");
+        batteryIcon.className = "fa-solid fa-battery-half";
+        batteryIcon.textContent = "charging";
+    }
+    
+    else if (battery.charging === false) {
+        console.log("is not charging");
+        batteryIcon.classlist.remove("fa-battery-bolt");
+        batteryIcon.classlist.add("fa-battery-half");
+        console.log(battery.level * 100 + "%");
+        
+    }
+})
+// console.log(battery);
+    
 
 
 
