@@ -156,6 +156,29 @@ border-radius: 2rem;
   justify-content: flex-end;
   align-items: center;
   gap: 5px;
+  font-size: 1.5rem;
+}
+
+.battery-body{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 5px;
+  border: 1px solid var(--numbers-color);
+  padding: 2px 5px;
+}
+
+.battery-body::after{
+  width: 3px;
+  height: 1rem;
+  background-color: var(--numbers-color);;
+  content: "";
+  position: absolute;
+  right: 13.5%;
+}
+
+.bolt {
+  font-size: 1rem;
 }
 
 .top-bar {

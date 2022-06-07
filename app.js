@@ -15,7 +15,8 @@ const themeSwitcher = document.querySelector(".light-mode");
 const undo = document.querySelector(".reverse");
 const deleteKey = document.querySelector(".delete");
 const clock = document.querySelector(".clock");
-const batteryIcon = document.querySelector(".battery-icon");
+const batteryNumber = document.querySelector(".battery-number");
+const batteryBody = document.querySelector(".battery-body");
 let arrResult = [];
 let arrInput = [];
 let undoCounter = arrResult.length;
@@ -110,30 +111,21 @@ let interval = setInterval(function () {
     
 
 
-// navigator.getBattery().then(function (battery) {
-//     let batteryLevel = battery.level * 100 + "%";
-//     console.log(batteryLevel);
-// });
-
 
 
 let batteryIsCharging = false;
 navigator.getBattery().then(function (battery) {
     batteryIsCharging = battery.charging;
+    console.log(battery);
 
     if (battery.charging === true) {
-        console.log("is charging");
-        console.log(battery.level * 100 + "%");
-        batteryIcon.className = "fa-solid fa-battery-half";
-        batteryIcon.textContent = "charging";
+        batteryNumber.innerHTML =  (battery.level * 100) + "%";
+        
     }
     
     else if (battery.charging === false) {
-        console.log("is not charging");
-        batteryIcon.classlist.remove("fa-battery-bolt");
-        batteryIcon.classlist.add("fa-battery-half");
+        document.querySelector(".bolt").style.display = "none";
         console.log(battery.level * 100 + "%");
-        
     }
 })
 // console.log(battery);
